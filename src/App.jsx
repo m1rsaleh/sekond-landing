@@ -7,7 +7,10 @@ import ValueSection from './components/ValueSection';
 import DownloadBanner from './components/DownloadBanner';
 import Footer from './components/Footer';
 import LegalPages from './components/LegalPages';
+import PaymentStatus from './components/PaymentStatus';
 import { translations } from './i18n';
+
+const PATH = window.location.pathname.toLowerCase();
 
 function App() {
   const [theme, setTheme] = useState('light');
@@ -19,6 +22,14 @@ function App() {
   useEffect(() => {
     document.body.setAttribute('data-theme', theme);
   }, [theme]);
+
+  // Payment redirect pages — no navbar/footer needed
+  if (PATH === '/payment-success' || PATH === '/payment-success/') {
+    return <PaymentStatus type="success" />;
+  }
+  if (PATH === '/payment-error' || PATH === '/payment-error/') {
+    return <PaymentStatus type="error" />;
+  }
 
   const goHome = () => {
     setPage('home');
