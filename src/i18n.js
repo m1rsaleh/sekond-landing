@@ -97,7 +97,7 @@ Toplanan məlumatların emal məqsədləri: hesabın idarəsi, elanların modera
 
 SEKOND məlumatların qorunması üçün şifrələmə, giriş nəzarəti və monitorinq mexanizmlərindən istifadə edir.`,
       supportTitle: 'Dəstək',
-      supportBody: 'Kömək üçün support@sekond.az ünvanına yazın. Sorğunuzda hesab emailinizi və problemi qısa şəkildə qeyd edin. Komandamız adətən 24 saat ərzində cavab verir.',
+      supportBody: 'Bizimlə əlaqə saxlamaq üçün aşağıdakı formu doldurun və ya birbaşa support@sekond.az ünvanına yazın. Sorğunuzda hesab emailinizi və problemi qısa şəkildə qeyd edin. Komandamız adətən 24 saat ərzində cavab verir.',
     },
   },
   en: {
@@ -192,7 +192,7 @@ Users may request access, correction, or deletion of their personal data where l
 
 Security measures include access controls, encryption in transit, and internal monitoring. While no system is absolutely risk-free, SEKOND continuously improves safeguards to protect user information.`,
       supportTitle: 'Support',
-      supportBody: 'For help, contact support@sekond.az. Please include your account email and a short description of the issue. Our team usually responds within 24 hours.',
+      supportBody: 'To get help, fill in the form below or contact us directly at support@sekond.az. Please include your account email and a brief description of the issue. Our team usually responds within 24 hours.',
     },
   },
   ru: {
@@ -287,7 +287,7 @@ SEKOND не продает персональные данные. Передач
 
 Для защиты информации применяются контроль доступа, шифрование при передаче и внутренний мониторинг. Мы регулярно усиливаем меры безопасности платформы.`,
       supportTitle: 'Поддержка',
-      supportBody: 'Для помощи напишите на support@sekond.az. Укажите email аккаунта и коротко опишите проблему. Обычно отвечаем в течение 24 часов.',
+      supportBody: 'Для получения помощи заполните форму ниже или напишите нам напрямую на support@sekond.az. Укажите email аккаунта и кратко опишите проблему. Обычно отвечаем в течение 24 часов.',
     },
   },
 };

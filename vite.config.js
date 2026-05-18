@@ -6,4 +6,7 @@ export default defineConfig({
   server: {
     historyApiFallback: true,
   },
+  preview: {
+    cors: true,
+  },
 });

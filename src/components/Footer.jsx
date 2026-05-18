@@ -35,15 +35,24 @@ function Footer({ t, onNavigate }) {
         <div className="footer-bottom">
           <p>{t.footer.rights}</p>
           <nav className="footer-links" aria-label={t.footer.linksAria}>
-            <button type="button" className="link-button" onClick={() => onNavigate('terms')}>
+            <a href="/terms" className="link-button" onClick={(e) => {
+              e.preventDefault();
+              onNavigate('terms');
+            }}>
               {t.footer.terms}
-            </button>
-            <button type="button" className="link-button" onClick={() => onNavigate('privacy')}>
+            </a>
+            <a href="/privacy" className="link-button" onClick={(e) => {
+              e.preventDefault();
+              onNavigate('privacy');
+            }}>
               {t.footer.privacy}
-            </button>
-            <button type="button" className="link-button" onClick={() => onNavigate('support')}>
+            </a>
+            <a href="/support" className="link-button" onClick={(e) => {
+              e.preventDefault();
+              onNavigate('support');
+            }}>
               {t.footer.support}
-            </button>
+            </a>
           </nav>
         </div>
       </div>
