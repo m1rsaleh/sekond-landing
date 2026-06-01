@@ -71,6 +71,7 @@ export const translations = {
       terms: 'Qaydalar',
       privacy: 'Məxfilik',
       support: 'Dəstək',
+      accountDeletion: 'Hesabın silinməsi',
       socialAria: 'Sosial media linkləri',
       linksAria: 'Footer linkləri',
     },
@@ -96,6 +97,31 @@ Toplanan məlumatların emal məqsədləri: hesabın idarəsi, elanların modera
 İstifadəçi öz hesabından məlumatlarını yeniləmək, düzəltmək və müəyyən hallarda silinməsini tələb etmək hüququna malikdir. Bəzi məlumatlar maliyyə və təhlükəsizlik tələblərinə görə müəyyən müddət saxlanıla bilər.
 
 SEKOND məlumatların qorunması üçün şifrələmə, giriş nəzarəti və monitorinq mexanizmlərindən istifadə edir.`,
+  accountDeletionTitle: 'SEKOND Hesab Silinməsi',
+  accountDeletionBody: `Bu səhifə SEKOND istifadəçilərinin hesabını və əlaqəli məlumatlarını silmək üçün nəzərdə tutulub.
+
+Mobil tətbiqdən hesab silmə addımları:
+1) SEKOND tətbiqini açın və Profil bölməsinə keçin.
+2) Ayarlar (Settings) səhifəsinə daxil olun.
+3) "Hesabı sil" seçimini seçin.
+4) Xəbərdarlıq mətnini oxuyub təsdiqləyin.
+5) Təhlükəsizlik üçün hesab təsdiqi (OTP/parol) tələb oluna bilər.
+
+Alternativ müraciət yolu:
+1) support@sekond.az ünvanına "Hesab silinməsi" mövzusu ilə yazın.
+2) Hesaba bağlı email və ya telefon nömrəsini qeyd edin.
+
+Silinən məlumatlar:
+- Profil məlumatları (ad, bio, profil şəkli, əlaqə məlumatları)
+- Elan məzmunu və elan media faylları
+- Çat məlumatlarının şəxsi hissəsi
+
+Saxlanılan məlumatlar və müddət:
+- Maliyyə/ödəniş qeydləri (qanuni audit və mühasibat üçün): 5 il
+- Fırıldaqçılıq və təhlükəsizlik logları: 12 ay
+- Hüquqi mübahisələr üçün tələb olunan qeydlər: qanunla tələb olunan müddət
+
+Hesab silinməsi sorğuları adətən 30 gün ərzində tamamlanır. Qanuni öhdəlik səbəbilə saxlanmalı olan məlumatlar yuxarıdakı müddətlər üzrə qorunur.`,
       supportTitle: 'Dəstək',
       supportBody: 'Bizimlə əlaqə saxlamaq üçün aşağıdakı formu doldurun və ya birbaşa support@sekond.az ünvanına yazın. Sorğunuzda hesab emailinizi və problemi qısa şəkildə qeyd edin. Komandamız adətən 24 saat ərzində cavab verir.',
     },
@@ -166,6 +192,7 @@ SEKOND məlumatların qorunması üçün şifrələmə, giriş nəzarəti və mo
       terms: 'Terms',
       privacy: 'Privacy',
       support: 'Support',
+      accountDeletion: 'Account deletion',
       socialAria: 'Social links',
       linksAria: 'Footer links',
     },
@@ -191,6 +218,31 @@ SEKOND does not sell personal data. Data may be shared with service providers on
 Users may request access, correction, or deletion of their personal data where legally applicable. Certain records may be retained for security, legal compliance, and financial auditing obligations.
 
 Security measures include access controls, encryption in transit, and internal monitoring. While no system is absolutely risk-free, SEKOND continuously improves safeguards to protect user information.`,
+  accountDeletionTitle: 'SEKOND Account Deletion',
+  accountDeletionBody: `This page explains how SEKOND users can delete their account and associated data.
+
+Delete account from the mobile app:
+1) Open the SEKOND app and go to Profile.
+2) Open Settings.
+3) Tap "Delete account".
+4) Review the warning and confirm.
+5) Identity verification (OTP/password) may be required for security.
+
+Alternative request method:
+1) Email support@sekond.az with the subject "Account deletion".
+2) Include the phone number or email linked to your account.
+
+Data deleted:
+- Profile data (name, bio, profile image, contact details)
+- Listing content and listing media files
+- Personal parts of chat data
+
+Data retained and retention period:
+- Financial/payment records (for accounting and audit compliance): 5 years
+- Fraud prevention and security logs: 12 months
+- Records required for legal disputes: for the period required by law
+
+Most account deletion requests are completed within 30 days. Data that must be retained for legal or compliance reasons may be kept for the periods listed above.`,
       supportTitle: 'Support',
       supportBody: 'To get help, fill in the form below or contact us directly at support@sekond.az. Please include your account email and a brief description of the issue. Our team usually responds within 24 hours.',
     },
@@ -261,6 +313,7 @@ Security measures include access controls, encryption in transit, and internal m
       terms: 'Условия',
       privacy: 'Конфиденциальность',
       support: 'Поддержка',
+      accountDeletion: 'Удаление аккаунта',
       socialAria: 'Ссылки на соцсети',
       linksAria: 'Ссылки в футере',
     },
@@ -286,6 +339,31 @@ SEKOND не продает персональные данные. Передач
 Пользователь имеет право запросить доступ, исправление или удаление данных в рамках действующего законодательства. Часть данных может храниться дольше для целей безопасности, финансового учета и правовых обязательств.
 
 Для защиты информации применяются контроль доступа, шифрование при передаче и внутренний мониторинг. Мы регулярно усиливаем меры безопасности платформы.`,
+      accountDeletionTitle: 'Удаление аккаунта SEKOND',
+      accountDeletionBody: `Эта страница объясняет, как пользователи SEKOND могут удалить аккаунт и связанные данные.
+
+    Удаление аккаунта из мобильного приложения:
+    1) Откройте приложение SEKOND и перейдите в Профиль.
+    2) Откройте раздел Настройки.
+    3) Нажмите "Удалить аккаунт".
+    4) Ознакомьтесь с предупреждением и подтвердите удаление.
+    5) Для безопасности может потребоваться подтверждение личности (OTP/пароль).
+
+    Альтернативный способ:
+    1) Напишите на support@sekond.az с темой "Удаление аккаунта".
+    2) Укажите email или телефон, привязанный к аккаунту.
+
+    Какие данные удаляются:
+    - Профильные данные (имя, био, фото профиля, контакты)
+    - Контент объявлений и медиафайлы объявлений
+    - Личные части данных чата
+
+    Какие данные сохраняются и на какой срок:
+    - Финансовые/платежные записи (для аудита и бухгалтерского учета): 5 лет
+    - Логи безопасности и антифрода: 12 месяцев
+    - Данные, необходимые для правовых споров: в срок, требуемый законом
+
+    Обычно запросы на удаление аккаунта обрабатываются в течение 30 дней. Данные, которые нужно хранить по закону или для комплаенса, могут храниться в указанные выше сроки.`,
       supportTitle: 'Поддержка',
       supportBody: 'Для получения помощи заполните форму ниже или напишите нам напрямую на support@sekond.az. Укажите email аккаунта и кратко опишите проблему. Обычно отвечаем в течение 24 часов.',
     },

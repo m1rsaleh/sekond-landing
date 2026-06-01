@@ -4,19 +4,20 @@ import ContactForm from './ContactForm';
 
 function LegalPages({ t, page, onBackHome, language = 'az' }) {
   const [content, setContent] = useState(null);
-  const [loading, setLoading] = useState(page !== 'support');
+  const [loading, setLoading] = useState(!['support', 'account-deletion'].includes(page));
 
   const pageMap = {
     terms: { title: t.legal.termsTitle, defaultBody: t.legal.termsBody },
     privacy: { title: t.legal.privacyTitle, defaultBody: t.legal.privacyBody },
     support: { title: t.legal.supportTitle, defaultBody: t.legal.supportBody },
+    'account-deletion': { title: t.legal.accountDeletionTitle, defaultBody: t.legal.accountDeletionBody },
   };
 
   const current = pageMap[page] ?? pageMap.terms;
 
   // Fetch legal documents from backend on page/language change
   useEffect(() => {
-    if (page === 'support') {
+    if (page === 'support' || page === 'account-deletion') {
       setContent(null); // Support page doesn't fetch from backend
       setLoading(false);
       return;

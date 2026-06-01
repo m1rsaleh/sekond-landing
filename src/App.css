@@ -803,6 +803,8 @@ img, svg { display: block; }
 
 .price { color: var(--primary); font-weight: 700; font-size: 15px; }
 
+body[data-theme='dark'] .listing-card .price { color: var(--white); }
+
 .old-price { color: var(--text-light); text-decoration: line-through; font-size: 13px; }
 
 .centered-cta { text-align: center; margin-top: 40px; }

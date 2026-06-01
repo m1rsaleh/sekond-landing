@@ -15,7 +15,10 @@ const PATH = window.location.pathname.toLowerCase();
 // Extract page from URL path
 const getPageFromPath = () => {
   const path = window.location.pathname.toLowerCase().split('/').filter(Boolean)[0];
-  if (['terms', 'privacy', 'support'].includes(path)) {
+  if (['terms', 'privacy', 'support', 'account-deletion', 'delete-account'].includes(path)) {
+    if (path === 'delete-account') {
+      return 'account-deletion';
+    }
     return path;
   }
   return 'home';
@@ -33,6 +36,8 @@ function App() {
     setPage(newPage);
     if (newPage === 'home') {
       window.history.pushState(null, '', '/');
+    } else if (newPage === 'account-deletion') {
+      window.history.pushState(null, '', '/delete-account');
     } else {
       window.history.pushState(null, '', `/${newPage}`);
     }

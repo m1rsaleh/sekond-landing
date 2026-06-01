@@ -53,6 +53,12 @@ function Footer({ t, onNavigate }) {
             }}>
               {t.footer.support}
             </a>
+            <a href="/delete-account" className="link-button" onClick={(e) => {
+              e.preventDefault();
+              onNavigate('account-deletion');
+            }}>
+              {t.footer.accountDeletion}
+            </a>
           </nav>
         </div>
       </div>
