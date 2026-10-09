@@ -2,14 +2,41 @@
 <html lang="az">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SEKOND Landing</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>SEKOND · İkinci əl geyim al, sat</title>
+    <meta
+      name="description"
+      content="Bakıda ikinci əl geyim, ayaqqabı, çanta və aksesuar alıb-satmaq üçün tətbiq. Avansla al, qalanını görüşdə ödə."
+    />
+    <meta name="theme-color" content="#0E9F6E" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="apple-itunes-app" content="app-id=6760208632" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="SEKOND" />
+    <meta property="og:url" content="https://sekond.az/" />
+    <meta property="og:title" content="SEKOND · Geyimini sat, yenisini tap." />
+    <meta
+      property="og:description"
+      content="Bakıda ikinci əl geyim, ayaqqabı və çanta. Avansla al, qalanını görüşdə ödə."
+    />
+    <meta property="og:image" content="https://sekond.az/apple-touch-icon.png" />
+    <meta name="twitter:card" content="summary" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Unbounded:wght@600;800;900&display=swap"
       rel="stylesheet"
     />
+    <script>
+      // Apply the saved theme before first paint so there is no light/dark flash.
+      try {
+        var saved = localStorage.getItem('sekond-theme');
+        if (saved === 'dark' || saved === 'light') document.documentElement.setAttribute('data-theme', saved);
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <div id="root"></div>

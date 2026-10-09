@@ -1,371 +1,442 @@
+import { legal } from './i18n-legal';
+
 export const languages = [
   { code: 'az', label: 'AZ' },
   { code: 'en', label: 'EN' },
   { code: 'ru', label: 'RU' },
 ];
 
+// Replaces {key} placeholders, e.g. fmt('{p}% avans', { p: 10 }).
+export const fmt = (str, vars = {}) =>
+  str.replace(/\{(\w+)\}/g, (_, key) => (key in vars ? vars[key] : `{${key}}`));
+
 export const translations = {
   az: {
+    meta: {
+      title: 'SEKOND · İkinci əl geyim al, sat',
+    },
     nav: {
       ariaHome: 'SEKOND ana səhifə',
-      ariaDownloads: 'Yükləmə düymələri',
+      ariaMain: 'Əsas menyu',
+      links: { how: 'Necə işləyir', avans: 'Avans', sell: 'Satıcılara', faq: 'Suallar' },
+      cta: 'Tətbiqi yüklə',
       menuOpen: 'Menyunu aç',
-      appStore: 'App Store',
-      googlePlay: 'Google Play',
-      themeLight: 'Açıq',
-      themeDark: 'Tünd',
+      menuClose: 'Menyunu bağla',
+      themeLight: 'Açıq rejim',
+      themeDark: 'Tünd rejim',
       languageLabel: 'Dil',
     },
+    store: {
+      ios: 'App Store',
+      iosSub: 'Yüklə',
+      android: 'Google Play',
+      androidSub: 'Tezliklə',
+      androidGet: 'Yüklə',
+    },
     hero: {
-      badge: 'Bakıda №1 ikinci əl moda platforması',
+      tag: 'Bakı · ikinci əl moda',
       title1: 'Geyimini sat,',
-      title2: 'yenisini tap',
-      desc: 'Geyim, ayaqqabı, aksesuar, çanta. Avans sistemi ilə güvənli alış-veriş. Pulsuz qeydiyyat və ani bildirişlər.',
-      ctaAppStore: 'App Store-dan yüklə',
-      ctaGooglePlay: 'Google Play-dən yüklə',
-      statListings: 'Aktiv elan',
-      statUsers: 'İstifadəçi',
-      statFree: 'Qeydiyyat',
-      statFreeValue: 'Pulsuz',
-      imageAlt: 'SEKOND tətbiqinin əsas ekran görüntüsü',
+      title2: 'yenisini tap.',
+      sub: 'Geyim, ayaqqabı, çanta və aksesuar. Bakıda, bir tətbiqdə. Avansla al, qalanını görüşdə ödə.',
+      facts: ['Qeydiyyat pulsuzdur', 'Hər elan yoxlanılır', 'Avans qorunur'],
+      chipAvans: 'Avans qorunur',
+      chipCondition: 'Az istifadə',
+      imageAlt: 'SEKOND tətbiqinin ana ekranı',
+      imageAlt2: 'SEKOND tətbiqində elan səhifəsi',
     },
+    marquee: ['Paltar', 'Krossovka', 'Çanta', 'Gödəkçə', 'Ətək', 'Blazer', 'Aksesuar', 'Cins', 'Palto', 'Zinət'],
     how: {
-      label: 'Necə işləyir?',
-      title: '3 addımda alış-veriş',
-      sub: 'Sadə, sürətli və güvənli. Avans sistemi hər iki tərəfi qoruyur.',
+      label: 'Necə alırsan',
+      title: '3 addımda al',
       steps: [
-        { id: 1, icon: '🔍', title: 'Elanı tap', desc: 'Sual ver, məhsulu yoxla, satıcı ilə əlaqə saxla.' },
-        { id: 2, icon: '💸', title: 'Avans göndər', desc: 'Satıcı 24 saat ərzində qəbul edir, pul qorunur.' },
-        { id: 3, icon: '🤝', title: 'Görüş, götür', desc: 'Qalan məbləği görüşdə nağd ödə, malı al.' },
+        {
+          title: 'Axtar, tap',
+          desc: 'Brend, ölçü, vəziyyət və qiymətə görə filtrlə. Bəyəndiyin elanı aç.',
+          alt: 'SEKOND tətbiqində filtr ekranı',
+        },
+        {
+          title: 'Avans göndər',
+          desc: 'Tam pulu əvvəlcədən ödəmirsən. Qiymətin {p}%-i qədər avans göndərirsən.',
+          alt: 'SEKOND tətbiqində elan və sifariş düyməsi',
+        },
+        {
+          title: 'Görüş, yoxla, ödə',
+          desc: 'Malı görürsən, yoxlayırsan. Qalanını görüşdə nağd ödəyirsən.',
+          alt: 'SEKOND tətbiqində elan səhifəsi',
+        },
+      ],
+      tagAvans: 'Avans',
+      tagMeet: 'Görüşdə',
+    },
+    avans: {
+      label: 'Avans necə qoruyur',
+      hook: 'Pulu göndərim, satıcı yox olsa?',
+      answer: 'Avansın geri qaytarılır.',
+      desc: 'Əvvəlcədən yalnız kiçik avans göndərirsən. Qalanını malı görəndən sonra ödəyirsən.',
+      calcLabel: 'Elanın qiyməti',
+      calcHint: 'Sürüşdür, hesabla',
+      calcAvans: 'İndi avans',
+      calcMeet: 'Görüşdə nağd',
+      outcomes: [
+        { title: 'Satıcı qəbul etdi', desc: 'Görüş təyin edirsiniz. Malı yoxlayıb qalanını ödəyirsən.' },
+        { title: 'İmtina etdi və ya susdu', desc: 'Satıcı imtina etsə və ya {h} saatda cavab verməsə, avansın geri qaytarılır.' },
+        { title: 'Görüşdən sonra problem?', desc: 'Satıcı qəbul edəndən sonra {d} gün ərzində şikayət aç. Komandamız baxır.' },
+      ],
+      timer: '{h} saat',
+      trust: [
+        { title: 'Elanlar yoxlanılır', desc: 'Hər elan yayımlanmadan əvvəl moderasiyadan keçir.' },
+        { title: 'Çat tətbiqdə qalır', desc: 'Nömrə, link və ünvan çatda filtrlənir.' },
+        { title: 'Dəstək komandası', desc: 'Sualın olsa, support@sekond.az ünvanına yaz.' },
       ],
     },
-    why: {
-      label: 'Üstünlüklər',
-      title: 'Niyə SEKOND?',
-      sub: 'Bakının ən güvənli ikinci əl platforması. Hər addımda sizi qoruyuruq.',
+    sell: {
+      label: 'Satıcılar üçün',
+      title: 'Şkafında pul yatır.',
+      desc: '"Hələ satılır?" yazıb yox olan alıcıdan yorulmusan? SEKOND-da alıcı avans göndərir. Bu, ciddi niyyətdir.',
+      steps: [
+        { title: 'Şəkil çək', desc: 'Telefon kamerası kifayətdir.' },
+        { title: 'Qiymət yaz', desc: 'Brend, ölçü və vəziyyəti seç.' },
+        { title: 'Avansı qəbul et', desc: 'Alıcı avans göndərir. {h} saat ərzində cavab verirsən.' },
+      ],
+      note: '1-2 dəqiqəyə elanın hazırdır.',
+      cta: 'Satmağa başla',
+      tags: ['Orijinal', 'M (46)', 'Az istifadə'],
+      imageAlt: 'SEKOND tətbiqində qadın geyimləri kateqoriyası',
+    },
+    categories: {
+      label: 'Kateqoriyalar',
+      title: 'Nə axtarırsan?',
+      sub: 'Tətbiqdə kateqoriya, ölçü və vəziyyətə görə filtrlə.',
+      items: ['Üst geyim', 'Paltar', 'Alt geyim', 'Gödəkçə və palto', 'Blazer və kostyum', 'İdman geyimi', 'Ayaqqabı', 'Çanta', 'Aksesuar', 'Zinət əşyaları'],
+      cta: 'Tətbiqdə bax',
+    },
+    planet: {
+      label: 'Davamlı moda',
+      text: 'Hər əl dəyişən geyim zibilxanadan uzaqlaşır. Yenisini almazdan əvvəl SEKOND-a bax.',
+    },
+    faq: {
+      label: 'Suallar',
+      title: 'Tez-tez soruşulanlar',
+      sub: 'Cavabı tapmadın? Bizə yaz, adətən 24 saat ərzində cavab veririk.',
+      contactCta: 'Dəstəyə yaz',
       items: [
-        { icon: '🔒', title: 'Avans qoruması', desc: 'Satıcı imtina edərsə avansın avtomatik geri qaytarılır.' },
-        { icon: '✅', title: 'Moderasiya olunan elanlar', desc: 'Hər elan admin tərəfindən yoxlanılır, saxta elanlar silinir.' },
-        { icon: '💬', title: 'Güvənli çat', desc: 'Şəxsi məlumatlar yalnız avansdan sonra paylaşılır.' },
-      ],
-    },
-    value: {
-      label: 'Sizin üçün',
-      title: 'SEKOND-da nələri qazanırsan?',
-      sub: 'Yalnız elan platforması deyil; bütün proses boyu güvənlik, sürət və rahatlıq qazanırsan.',
-      cards: [
-        { icon: '⚡', title: 'Sürətli elanlaşma', desc: 'Şəkillərlə 1-2 dəqiqədə elan yarat, alıcılarla tez əlaqə qur.' },
-        { icon: '🛡️', title: 'Riskin azaldılması', desc: 'Avans mexanizmi ilə həm alıcı, həm satıcı daha qorunan mühitə keçir.' },
-        { icon: '📈', title: 'Daha çox görünürlük', desc: 'Aktiv istifadəçi bazası hesabına məhsulun daha tez satılma şansı artır.' },
+        { q: 'Avans nədir?', a: 'Elanın qiymətinin {p}%-i. Alıcı avansı tətbiqdə göndərir, qalan məbləği görüşdə nağd ödəyir.' },
+        { q: 'Satıcı cavab verməsə nə olur?', a: 'Satıcının {h} saatı var. İmtina etsə və ya cavab verməsə, avansın geri qaytarılır.' },
+        { q: 'Görüşdən sonra problem çıxsa?', a: 'Satıcı avansı qəbul edəndən sonra {d} gün ərzində tətbiqdə şikayət aça bilərsən. Komandamız araşdırır.' },
+        { q: 'Necə elan yerləşdirim?', a: 'Tətbiqi yüklə, hesab yarat. Şəkil çək, brend, ölçü və qiyməti yaz. Elan yoxlanılandan sonra yayımlanır.' },
+        { q: 'Qeydiyyat pulludur?', a: 'Xeyr, qeydiyyat pulsuzdur.' },
+        { q: 'Android-də var?', a: 'Hazırda App Store-dadır. Google Play versiyası tezliklə çıxacaq.' },
       ],
     },
     download: {
       label: 'Tətbiqi yüklə',
-      title: 'Hər gün yeni elanlar',
-      desc: 'Tətbiqi yüklə, Bakının ən böyük ikinci əl moda bazarını kəşf et.',
-      subLabel: 'Yüklə',
+      title1: 'Geyimini sat,',
+      title2: 'yenisini tap.',
+      desc: 'Pulsuz yüklə. Bakıda ikinci əl geyim bir tətbiqdə.',
+      qr: 'Telefonunla skan et',
+      qrSub: 'App Store səhifəsi açılır',
     },
     footer: {
-      sub: 'Bakıda ikinci əl moda üçün güvənli platforma',
+      tagline: 'Al. Sat. Yenilə.',
+      sub: 'Bakıda ikinci əl geyim, ayaqqabı və çanta.',
       rights: '© 2026 SEKOND. Bütün hüquqlar qorunur.',
+      colProduct: 'Tətbiq',
+      colLegal: 'Hüquqi',
+      colContact: 'Əlaqə',
       terms: 'Qaydalar',
       privacy: 'Məxfilik',
       support: 'Dəstək',
       accountDeletion: 'Hesabın silinməsi',
-      socialAria: 'Sosial media linkləri',
-      linksAria: 'Footer linkləri',
+      socialAria: 'Sosial media',
+      linksAria: 'Hüquqi linklər',
+      backTop: 'Yuxarı qalx',
     },
-    legal: {
-      backHome: 'Ana səhifəyə qayıt',
-      termsTitle: 'İstifadə Qaydaları',
-      termsBody: `SEKOND platformasından istifadə edən hər bir şəxs bu qaydaları qəbul etmiş sayılır. Platformada hesab yaradan istifadəçi 18 yaşdan yuxarı olmalı və qeydiyyat zamanı doğru məlumat təqdim etməlidir.
-
-İstifadəçi elan yerləşdirərkən məhsulun vəziyyəti, ölçüsü, markası, qiyməti və fotoları haqqında real məlumat verməlidir. Saxta məhsullar, qanunla qadağan olunan mallar, aldadıcı qiymətləndirmə və spam elanlar qəti qadağandır. SEKOND moderatorları bu tip elanları xəbərdarlıqsız silmək hüququna malikdir.
-
-Platformadakı avans mexanizmi alıcı və satıcını qorumaq üçün yaradılıb. Alıcı avans ödənişi etdikdən sonra satıcı müddət daxilində cavab verməlidir. Satıcı əməliyyatı ləğv etdikdə və ya qaydalara zidd hərəkət etdikdə avans məbləği alıcıya geri qaytarılır. Təkrarlanan pozuntu halları hesabın müddətli və ya daimi bloklanması ilə nəticələnə bilər.
-
-SEKOND yalnız platforma xidmətini təqdim edir; fiziki görüş, məhsulun son yoxlanışı və qalan ödəniş tərəflərin məsuliyyətindədir. Buna baxmayaraq, dəstək xidməti mübahisə halları üçün log məlumatları və əməliyyat tarixçəsini nəzərə alaraq araşdırma aparır.
-
-Platformadan istifadə zamanı nifrət nitqi, təhqir, təcavüzkar yazışmalar və qeyri-etik hərəkətlər qəti qadağandır. Bu qaydaları pozan hesablar təhlükəsizlik məqsədilə məhdudlaşdırıla bilər.`,
-      privacyTitle: 'Məxfilik Siyasəti',
-      privacyBody: `SEKOND istifadəçi məxfiliyini prioritet hesab edir. Qeydiyyat zamanı toplanan əsas məlumatlara ad, əlaqə vasitəsi, hesab identifikatoru və texniki cihaz məlumatları daxildir. Ödəniş əməliyyatları zamanı əməliyyat ID-si, tarix, məbləğ və status kimi məlumatlar saxlanılır.
-
-Toplanan məlumatların emal məqsədləri: hesabın idarəsi, elanların moderasiyası, fırıldaq riskinin azaldılması, avans əməliyyatlarının idarəsi, push bildirişlərinin göndərilməsi və dəstək sorğularının cavablandırılması.
-
-Çat və əməliyyat məlumatları platforma təhlükəsizliyi üçün avtomatik sistemlər və daxili qaydalarla yoxlanıla bilər. Şəxsi məlumatlar qanuni əsas olmadan üçüncü tərəflərlə satılmır və ya paylaşılmır. Qanunvericilik tələbi olduqda, yalnız lazımi həcmdə məlumat aidiyyəti orqanlarla bölüşülə bilər.
-
-İstifadəçi öz hesabından məlumatlarını yeniləmək, düzəltmək və müəyyən hallarda silinməsini tələb etmək hüququna malikdir. Bəzi məlumatlar maliyyə və təhlükəsizlik tələblərinə görə müəyyən müddət saxlanıla bilər.
-
-SEKOND məlumatların qorunması üçün şifrələmə, giriş nəzarəti və monitorinq mexanizmlərindən istifadə edir.`,
-  accountDeletionTitle: 'SEKOND Hesab Silinməsi',
-  accountDeletionBody: `Bu səhifə SEKOND istifadəçilərinin hesabını və əlaqəli məlumatlarını silmək üçün nəzərdə tutulub.
-
-Mobil tətbiqdən hesab silmə addımları:
-1) SEKOND tətbiqini açın və Profil bölməsinə keçin.
-2) Ayarlar (Settings) səhifəsinə daxil olun.
-3) "Hesabı sil" seçimini seçin.
-4) Xəbərdarlıq mətnini oxuyub təsdiqləyin.
-5) Təhlükəsizlik üçün hesab təsdiqi (OTP/parol) tələb oluna bilər.
-
-Alternativ müraciət yolu:
-1) support@sekond.az ünvanına "Hesab silinməsi" mövzusu ilə yazın.
-2) Hesaba bağlı email və ya telefon nömrəsini qeyd edin.
-
-Silinən məlumatlar:
-- Profil məlumatları (ad, bio, profil şəkli, əlaqə məlumatları)
-- Elan məzmunu və elan media faylları
-- Çat məlumatlarının şəxsi hissəsi
-
-Saxlanılan məlumatlar və müddət:
-- Maliyyə/ödəniş qeydləri (qanuni audit və mühasibat üçün): 5 il
-- Fırıldaqçılıq və təhlükəsizlik logları: 12 ay
-- Hüquqi mübahisələr üçün tələb olunan qeydlər: qanunla tələb olunan müddət
-
-Hesab silinməsi sorğuları adətən 30 gün ərzində tamamlanır. Qanuni öhdəlik səbəbilə saxlanmalı olan məlumatlar yuxarıdakı müddətlər üzrə qorunur.`,
-      supportTitle: 'Dəstək',
-      supportBody: 'Bizimlə əlaqə saxlamaq üçün aşağıdakı formu doldurun və ya birbaşa support@sekond.az ünvanına yazın. Sorğunuzda hesab emailinizi və problemi qısa şəkildə qeyd edin. Komandamız adətən 24 saat ərzində cavab verir.',
-    },
+    legal: legal.az,
   },
+
   en: {
+    meta: {
+      title: 'SEKOND · Buy and sell second-hand fashion',
+    },
     nav: {
       ariaHome: 'SEKOND home page',
-      ariaDownloads: 'Download buttons',
+      ariaMain: 'Main menu',
+      links: { how: 'How it works', avans: 'Deposit', sell: 'For sellers', faq: 'FAQ' },
+      cta: 'Get the app',
       menuOpen: 'Open menu',
-      appStore: 'App Store',
-      googlePlay: 'Google Play',
-      themeLight: 'Light',
-      themeDark: 'Dark',
+      menuClose: 'Close menu',
+      themeLight: 'Light mode',
+      themeDark: 'Dark mode',
       languageLabel: 'Language',
     },
+    store: {
+      ios: 'App Store',
+      iosSub: 'Download on the',
+      android: 'Google Play',
+      androidSub: 'Coming soon',
+      androidGet: 'Get it on',
+    },
     hero: {
-      badge: 'Baku No1 second-hand fashion platform',
-      title1: 'Sell your style,',
-      title2: 'find your next one',
-      desc: 'Clothes, shoes, accessories, bags. Secure shopping with our deposit system. Free signup and instant notifications.',
-      ctaAppStore: 'Download on App Store',
-      ctaGooglePlay: 'Get it on Google Play',
-      statListings: 'Active listings',
-      statUsers: 'Users',
-      statFree: 'Signup',
-      statFreeValue: 'Free',
+      tag: 'Baku · second-hand fashion',
+      title1: 'Sell your clothes,',
+      title2: 'find new ones.',
+      sub: 'Clothes, shoes, bags and accessories. In Baku, in one app. Pay a small deposit, the rest when you meet.',
+      facts: ['Free signup', 'Every listing is reviewed', 'Deposit protected'],
+      chipAvans: 'Deposit protected',
+      chipCondition: 'Lightly used',
       imageAlt: 'SEKOND app home screen',
+      imageAlt2: 'Listing page in the SEKOND app',
     },
+    marquee: ['Dresses', 'Sneakers', 'Bags', 'Jackets', 'Skirts', 'Blazers', 'Accessories', 'Denim', 'Coats', 'Jewelry'],
     how: {
-      label: 'How it works',
-      title: 'Shop in 3 simple steps',
-      sub: 'Simple, fast and secure. Our deposit flow protects both sides.',
+      label: 'How buying works',
+      title: 'Buy in 3 steps',
       steps: [
-        { id: 1, icon: '🔍', title: 'Find an item', desc: 'Ask questions, verify the product, contact the seller.' },
-        { id: 2, icon: '💸', title: 'Send deposit', desc: 'Seller confirms within 24 hours and your money is protected.' },
-        { id: 3, icon: '🤝', title: 'Meet and collect', desc: 'Pay the remaining amount in person and get the item.' },
+        {
+          title: 'Search and find',
+          desc: 'Filter by brand, size, condition and price. Open the listing you like.',
+          alt: 'Filter screen in the SEKOND app',
+        },
+        {
+          title: 'Send a deposit',
+          desc: 'You never pay the full price upfront. You send a deposit of {p}% of the price.',
+          alt: 'Listing with order button in the SEKOND app',
+        },
+        {
+          title: 'Meet, check, pay',
+          desc: 'See the item and check it. Pay the rest in cash when you meet.',
+          alt: 'Listing page in the SEKOND app',
+        },
+      ],
+      tagAvans: 'Deposit',
+      tagMeet: 'At meetup',
+    },
+    avans: {
+      label: 'How the deposit protects you',
+      hook: 'What if I pay and the seller disappears?',
+      answer: 'Your deposit is returned.',
+      desc: 'You only send a small deposit upfront. You pay the rest after you see the item.',
+      calcLabel: 'Listing price',
+      calcHint: 'Slide to calculate',
+      calcAvans: 'Deposit now',
+      calcMeet: 'Cash at meetup',
+      outcomes: [
+        { title: 'Seller accepts', desc: 'You set up a meetup. Check the item, then pay the rest.' },
+        { title: 'Declines or stays silent', desc: 'If the seller declines or does not reply within {h} hours, your deposit is returned.' },
+        { title: 'Problem after the meetup?', desc: 'Open a dispute within {d} days after the seller accepts. Our team reviews it.' },
+      ],
+      timer: '{h} hours',
+      trust: [
+        { title: 'Listings are reviewed', desc: 'Every listing goes through moderation before it goes live.' },
+        { title: 'Chat stays in the app', desc: 'Phone numbers, links and addresses are filtered in chat.' },
+        { title: 'Support team', desc: 'Questions? Write to support@sekond.az.' },
       ],
     },
-    why: {
-      label: 'Benefits',
-      title: 'Why SEKOND?',
-      sub: 'The safest second-hand fashion platform in Baku.',
+    sell: {
+      label: 'For sellers',
+      title: 'Your closet is holding cash.',
+      desc: 'Tired of buyers who ask "Still available?" and vanish? On SEKOND buyers send a deposit. That means they are serious.',
+      steps: [
+        { title: 'Take photos', desc: 'Your phone camera is enough.' },
+        { title: 'Set a price', desc: 'Pick brand, size and condition.' },
+        { title: 'Accept the deposit', desc: 'The buyer sends a deposit. You reply within {h} hours.' },
+      ],
+      note: 'Your listing is ready in 1-2 minutes.',
+      cta: 'Start selling',
+      tags: ['Original', 'M (46)', 'Lightly used'],
+      imageAlt: 'Women category in the SEKOND app',
+    },
+    categories: {
+      label: 'Categories',
+      title: 'What are you looking for?',
+      sub: 'Filter by category, size and condition in the app.',
+      items: ['Tops', 'Dresses', 'Bottoms', 'Jackets and coats', 'Blazers and suits', 'Sportswear', 'Shoes', 'Bags', 'Accessories', 'Jewelry'],
+      cta: 'See in app',
+    },
+    planet: {
+      label: 'Sustainable fashion',
+      text: 'Every piece that changes hands stays out of a landfill. Before you buy new, check SEKOND.',
+    },
+    faq: {
+      label: 'FAQ',
+      title: 'Common questions',
+      sub: 'Did not find your answer? Write to us, we usually reply within 24 hours.',
+      contactCta: 'Contact support',
       items: [
-        { icon: '🔒', title: 'Deposit protection', desc: 'If seller declines, your deposit is automatically refunded.' },
-        { icon: '✅', title: 'Moderated listings', desc: 'Every listing is reviewed by admin to reduce fraud.' },
-        { icon: '💬', title: 'Secure chat', desc: 'Personal details are shared only after deposit confirmation.' },
-      ],
-    },
-    value: {
-      label: 'For you',
-      title: 'What do you gain on SEKOND?',
-      sub: 'More than a listing board: safety, speed, and confidence through the whole flow.',
-      cards: [
-        { icon: '⚡', title: 'Fast listing flow', desc: 'Create a polished listing in minutes and connect with buyers quickly.' },
-        { icon: '🛡️', title: 'Lower transaction risk', desc: 'The deposit mechanism improves trust for both buyer and seller.' },
-        { icon: '📈', title: 'Higher item visibility', desc: 'Reach an active audience and increase your chance of selling faster.' },
+        { q: 'What is the deposit?', a: '{p}% of the listing price. The buyer sends it in the app and pays the rest in cash at the meetup.' },
+        { q: 'What if the seller does not reply?', a: 'The seller has {h} hours. If they decline or do not reply, your deposit is returned.' },
+        { q: 'What if there is a problem after the meetup?', a: 'You can open a dispute in the app within {d} days after the seller accepts the deposit. Our team investigates.' },
+        { q: 'How do I post a listing?', a: 'Download the app and create an account. Take photos, add brand, size and price. Your listing goes live after review.' },
+        { q: 'Is signup paid?', a: 'No, signup is free.' },
+        { q: 'Is there an Android app?', a: 'SEKOND is on the App Store now. The Google Play version is coming soon.' },
       ],
     },
     download: {
-      label: 'Download app',
-      title: 'New listings every day',
-      desc: 'Download the app and discover the biggest second-hand fashion market in Baku.',
-      subLabel: 'Download',
+      label: 'Get the app',
+      title1: 'Sell your clothes,',
+      title2: 'find new ones.',
+      desc: 'Free to download. Second-hand fashion in Baku, in one app.',
+      qr: 'Scan with your phone',
+      qrSub: 'Opens the App Store page',
     },
     footer: {
-      sub: 'A trusted platform for second-hand fashion in Baku',
+      tagline: 'Buy. Sell. Refresh.',
+      sub: 'Second-hand clothes, shoes and bags in Baku.',
       rights: '© 2026 SEKOND. All rights reserved.',
+      colProduct: 'App',
+      colLegal: 'Legal',
+      colContact: 'Contact',
       terms: 'Terms',
       privacy: 'Privacy',
       support: 'Support',
       accountDeletion: 'Account deletion',
-      socialAria: 'Social links',
-      linksAria: 'Footer links',
+      socialAria: 'Social media',
+      linksAria: 'Legal links',
+      backTop: 'Back to top',
     },
-    legal: {
-      backHome: 'Back to home',
-      termsTitle: 'Terms of Use',
-      termsBody: `By using SEKOND, you agree to these Terms of Use. You must provide accurate account information and keep your account credentials secure. Users are responsible for all actions performed from their account.
-
-Listing content must be truthful and complete, including item condition, size, brand, price, and photos. Counterfeit goods, prohibited items, misleading descriptions, and spam listings are strictly forbidden. SEKOND reserves the right to remove such listings and restrict accounts that repeatedly violate these rules.
-
-SEKOND uses a deposit flow to reduce fraud risk between buyers and sellers. Once a buyer places a deposit, the seller must confirm or reject within the defined time window. If the transaction is cancelled due to seller-side issues or policy violations, the deposit is returned according to platform rules.
-
-SEKOND provides the marketplace infrastructure and transaction tools, but the final in-person exchange and item verification remain the responsibility of buyer and seller. In disputes, SEKOND may review transaction logs, chat history, and listing metadata to support resolution.
-
-Abusive behavior, hate speech, harassment, or attempts to bypass platform safety controls are prohibited. Accounts may be suspended or permanently blocked to protect the community.`,
-      privacyTitle: 'Privacy Policy',
-      privacyBody: `SEKOND processes personal data to operate the marketplace safely and effectively. Collected data may include account identifiers, contact details, device and session information, listing activity, transaction records, and support communications.
-
-We use this data for account management, anti-fraud checks, listing moderation, payment/deposit flow operations, service quality improvement, and customer support. Automated checks may be applied to detect risky behavior and policy violations.
-
-SEKOND does not sell personal data. Data may be shared with service providers only where required for platform operation (for example payment infrastructure, hosting, analytics, or customer support tooling) under appropriate contractual safeguards.
-
-Users may request access, correction, or deletion of their personal data where legally applicable. Certain records may be retained for security, legal compliance, and financial auditing obligations.
-
-Security measures include access controls, encryption in transit, and internal monitoring. While no system is absolutely risk-free, SEKOND continuously improves safeguards to protect user information.`,
-  accountDeletionTitle: 'SEKOND Account Deletion',
-  accountDeletionBody: `This page explains how SEKOND users can delete their account and associated data.
-
-Delete account from the mobile app:
-1) Open the SEKOND app and go to Profile.
-2) Open Settings.
-3) Tap "Delete account".
-4) Review the warning and confirm.
-5) Identity verification (OTP/password) may be required for security.
-
-Alternative request method:
-1) Email support@sekond.az with the subject "Account deletion".
-2) Include the phone number or email linked to your account.
-
-Data deleted:
-- Profile data (name, bio, profile image, contact details)
-- Listing content and listing media files
-- Personal parts of chat data
-
-Data retained and retention period:
-- Financial/payment records (for accounting and audit compliance): 5 years
-- Fraud prevention and security logs: 12 months
-- Records required for legal disputes: for the period required by law
-
-Most account deletion requests are completed within 30 days. Data that must be retained for legal or compliance reasons may be kept for the periods listed above.`,
-      supportTitle: 'Support',
-      supportBody: 'To get help, fill in the form below or contact us directly at support@sekond.az. Please include your account email and a brief description of the issue. Our team usually responds within 24 hours.',
-    },
+    legal: legal.en,
   },
+
   ru: {
+    meta: {
+      title: 'SEKOND · Покупай и продавай одежду б/у',
+    },
     nav: {
       ariaHome: 'Главная страница SEKOND',
-      ariaDownloads: 'Кнопки скачивания',
+      ariaMain: 'Главное меню',
+      links: { how: 'Как это работает', avans: 'Аванс', sell: 'Продавцам', faq: 'Вопросы' },
+      cta: 'Скачать',
       menuOpen: 'Открыть меню',
-      appStore: 'App Store',
-      googlePlay: 'Google Play',
-      themeLight: 'Светлая',
-      themeDark: 'Темная',
+      menuClose: 'Закрыть меню',
+      themeLight: 'Светлая тема',
+      themeDark: 'Тёмная тема',
       languageLabel: 'Язык',
     },
+    store: {
+      ios: 'App Store',
+      iosSub: 'Загрузите в',
+      android: 'Google Play',
+      androidSub: 'Скоро',
+      androidGet: 'Доступно в',
+    },
     hero: {
-      badge: 'Платформа second-hand моды №1 в Баку',
-      title1: 'Продавай свой стиль,',
-      title2: 'находи новый',
-      desc: 'Одежда, обувь, аксессуары и сумки. Безопасные сделки через систему аванса, бесплатная регистрация и мгновенные уведомления.',
-      ctaAppStore: 'Скачать в App Store',
-      ctaGooglePlay: 'Скачать в Google Play',
-      statListings: 'Активные объявления',
-      statUsers: 'Пользователи',
-      statFree: 'Регистрация',
-      statFreeValue: 'Бесплатно',
-      imageAlt: 'Домашний экран приложения SEKOND',
+      tag: 'Баку · одежда б/у',
+      title1: 'Продай одежду,',
+      title2: 'найди новую.',
+      sub: 'Одежда, обувь, сумки и аксессуары. В Баку, в одном приложении. Небольшой аванс сейчас, остальное при встрече.',
+      facts: ['Бесплатная регистрация', 'Каждое объявление проверяется', 'Аванс защищён'],
+      chipAvans: 'Аванс защищён',
+      chipCondition: 'Мало ношено',
+      imageAlt: 'Главный экран приложения SEKOND',
+      imageAlt2: 'Страница объявления в приложении SEKOND',
     },
+    marquee: ['Платья', 'Кроссовки', 'Сумки', 'Куртки', 'Юбки', 'Блейзеры', 'Аксессуары', 'Джинсы', 'Пальто', 'Украшения'],
     how: {
-      label: 'Как это работает',
-      title: 'Покупка за 3 шага',
-      sub: 'Просто, быстро и безопасно. Аванс защищает обе стороны.',
+      label: 'Как покупать',
+      title: 'Покупка в 3 шага',
       steps: [
-        { id: 1, icon: '🔍', title: 'Найдите товар', desc: 'Задайте вопросы, проверьте товар и свяжитесь с продавцом.' },
-        { id: 2, icon: '💸', title: 'Внесите аванс', desc: 'Продавец подтверждает в течение 24 часов, средства защищены.' },
-        { id: 3, icon: '🤝', title: 'Встретьтесь и заберите', desc: 'Оплатите остаток при встрече и получите товар.' },
+        {
+          title: 'Ищи и находи',
+          desc: 'Фильтруй по бренду, размеру, состоянию и цене. Открой понравившееся объявление.',
+          alt: 'Экран фильтров в приложении SEKOND',
+        },
+        {
+          title: 'Отправь аванс',
+          desc: 'Полную сумму заранее не платишь. Отправляешь аванс: {p}% от цены.',
+          alt: 'Объявление с кнопкой заказа в приложении SEKOND',
+        },
+        {
+          title: 'Встреться, проверь, оплати',
+          desc: 'Смотришь вещь и проверяешь её. Остаток платишь наличными при встрече.',
+          alt: 'Страница объявления в приложении SEKOND',
+        },
+      ],
+      tagAvans: 'Аванс',
+      tagMeet: 'При встрече',
+    },
+    avans: {
+      label: 'Как защищает аванс',
+      hook: 'А если заплачу, а продавец исчезнет?',
+      answer: 'Аванс вернётся к тебе.',
+      desc: 'Заранее отправляешь только небольшой аванс. Остальное платишь, когда увидишь вещь.',
+      calcLabel: 'Цена объявления',
+      calcHint: 'Двигай и считай',
+      calcAvans: 'Аванс сейчас',
+      calcMeet: 'Наличными при встрече',
+      outcomes: [
+        { title: 'Продавец принял', desc: 'Договариваетесь о встрече. Проверяешь вещь и платишь остаток.' },
+        { title: 'Отказал или молчит', desc: 'Если продавец откажет или не ответит за {h} часа, аванс вернётся.' },
+        { title: 'Проблема после встречи?', desc: 'Открой спор в течение {d} дней после того, как продавец принял аванс. Команда разберётся.' },
+      ],
+      timer: '{h} часа',
+      trust: [
+        { title: 'Объявления проверяются', desc: 'Каждое объявление проходит модерацию перед публикацией.' },
+        { title: 'Чат внутри приложения', desc: 'Номера, ссылки и адреса в чате фильтруются.' },
+        { title: 'Служба поддержки', desc: 'Есть вопрос? Пиши на support@sekond.az.' },
       ],
     },
-    why: {
-      label: 'Преимущества',
-      title: 'Почему SEKOND?',
-      sub: 'Самая надежная second-hand платформа моды в Баку.',
+    sell: {
+      label: 'Продавцам',
+      title: 'В шкафу лежат деньги.',
+      desc: 'Устал от покупателей, которые пишут «Ещё продаётся?» и пропадают? В SEKOND покупатель отправляет аванс. Значит, он настроен серьёзно.',
+      steps: [
+        { title: 'Сфотографируй', desc: 'Камеры телефона достаточно.' },
+        { title: 'Укажи цену', desc: 'Выбери бренд, размер и состояние.' },
+        { title: 'Прими аванс', desc: 'Покупатель отправляет аванс. Ответь в течение {h} часа.' },
+      ],
+      note: 'Объявление готово за 1-2 минуты.',
+      cta: 'Начать продавать',
+      tags: ['Оригинал', 'M (46)', 'Мало ношено'],
+      imageAlt: 'Категория женской одежды в приложении SEKOND',
+    },
+    categories: {
+      label: 'Категории',
+      title: 'Что ищешь?',
+      sub: 'В приложении можно фильтровать по категории, размеру и состоянию.',
+      items: ['Верхняя одежда', 'Платья', 'Низ', 'Куртки и пальто', 'Блейзеры и костюмы', 'Спортивная одежда', 'Обувь', 'Сумки', 'Аксессуары', 'Украшения'],
+      cta: 'Смотреть',
+    },
+    planet: {
+      label: 'Осознанная мода',
+      text: 'Каждая вещь, сменившая владельца, не попадает на свалку. Прежде чем купить новое, загляни в SEKOND.',
+    },
+    faq: {
+      label: 'Вопросы',
+      title: 'Частые вопросы',
+      sub: 'Не нашёл ответ? Напиши нам, обычно отвечаем в течение 24 часов.',
+      contactCta: 'Написать в поддержку',
       items: [
-        { icon: '🔒', title: 'Защита аванса', desc: 'Если продавец откажется, аванс возвращается автоматически.' },
-        { icon: '✅', title: 'Модерация объявлений', desc: 'Каждое объявление проверяется администратором.' },
-        { icon: '💬', title: 'Безопасный чат', desc: 'Личные данные открываются только после аванса.' },
-      ],
-    },
-    value: {
-      label: 'Для вас',
-      title: 'Что дает SEKOND?',
-      sub: 'Это не просто площадка объявлений: безопасность, скорость и удобный процесс сделки.',
-      cards: [
-        { icon: '⚡', title: 'Быстрое размещение', desc: 'Создайте качественное объявление за пару минут и быстрее находите покупателя.' },
-        { icon: '🛡️', title: 'Снижение рисков', desc: 'Механизм аванса повышает доверие и защищает обе стороны сделки.' },
-        { icon: '📈', title: 'Больше видимости', desc: 'Активная аудитория повышает шанс продать товар быстрее.' },
+        { q: 'Что такое аванс?', a: '{p}% от цены объявления. Покупатель отправляет его в приложении, а остаток платит наличными при встрече.' },
+        { q: 'Что если продавец не ответит?', a: 'У продавца есть {h} часа. Если он откажет или не ответит, аванс вернётся.' },
+        { q: 'Что если после встречи возникла проблема?', a: 'В течение {d} дней после того, как продавец принял аванс, можно открыть спор в приложении. Команда разберётся.' },
+        { q: 'Как разместить объявление?', a: 'Скачай приложение и создай аккаунт. Сфотографируй вещь, укажи бренд, размер и цену. Объявление публикуется после проверки.' },
+        { q: 'Регистрация платная?', a: 'Нет, регистрация бесплатная.' },
+        { q: 'Есть ли версия для Android?', a: 'Сейчас SEKOND есть в App Store. Версия для Google Play скоро выйдет.' },
       ],
     },
     download: {
       label: 'Скачать приложение',
-      title: 'Новые объявления каждый день',
-      desc: 'Скачайте приложение и откройте для себя крупнейший second-hand рынок моды Баку.',
-      subLabel: 'Скачать',
+      title1: 'Продай одежду,',
+      title2: 'найди новую.',
+      desc: 'Бесплатно. Одежда б/у в Баку, в одном приложении.',
+      qr: 'Сканируй телефоном',
+      qrSub: 'Откроется страница в App Store',
     },
     footer: {
-      sub: 'Надежная платформа second-hand моды в Баку',
+      tagline: 'Купи. Продай. Обнови.',
+      sub: 'Одежда, обувь и сумки б/у в Баку.',
       rights: '© 2026 SEKOND. Все права защищены.',
-      terms: 'Условия',
+      colProduct: 'Приложение',
+      colLegal: 'Документы',
+      colContact: 'Контакты',
+      terms: 'Правила',
       privacy: 'Конфиденциальность',
       support: 'Поддержка',
       accountDeletion: 'Удаление аккаунта',
-      socialAria: 'Ссылки на соцсети',
-      linksAria: 'Ссылки в футере',
+      socialAria: 'Соцсети',
+      linksAria: 'Юридические ссылки',
+      backTop: 'Наверх',
     },
-    legal: {
-      backHome: 'Назад на главную',
-      termsTitle: 'Условия использования',
-      termsBody: `Используя SEKOND, вы принимаете настоящие условия. Пользователь обязан предоставлять достоверные данные аккаунта и не передавать доступ третьим лицам.
-
-Объявления должны содержать точное описание товара: состояние, размер, бренд, цену и реальные фото. Подделки, запрещенные товары, ложные описания и спам строго запрещены. SEKOND может удалять такие объявления и ограничивать аккаунты нарушителей.
-
-Для повышения безопасности сделок платформа использует механизм аванса. После внесения аванса продавец обязан подтвердить сделку в установленный срок. При отказе продавца или нарушении правил аванс возвращается покупателю согласно внутренним регламентам платформы.
-
-SEKOND предоставляет инфраструктуру маркетплейса, но финальная личная встреча, осмотр товара и окончательная оплата остаются зоной ответственности сторон. В спорных случаях поддержка анализирует историю чата, платежные события и метаданные объявления.
-
-Оскорбления, агрессивное поведение, дискриминация и попытки обхода механизмов безопасности запрещены. В целях защиты сообщества аккаунт может быть временно или навсегда ограничен.`,
-      privacyTitle: 'Политика конфиденциальности',
-      privacyBody: `SEKOND обрабатывает персональные данные для безопасной и стабильной работы сервиса. Мы можем собирать идентификаторы аккаунта, контактные данные, технические данные устройства, информацию об объявлениях, транзакциях и обращениях в поддержку.
-
-Эти данные используются для управления аккаунтом, модерации контента, предотвращения мошенничества, сопровождения авансовых платежей, улучшения качества продукта и обработки запросов пользователей.
-
-SEKOND не продает персональные данные. Передача данных возможна только необходимым сервис-провайдерам (например, платежная инфраструктура, хостинг, аналитика) при наличии договорных гарантий защиты.
-
-Пользователь имеет право запросить доступ, исправление или удаление данных в рамках действующего законодательства. Часть данных может храниться дольше для целей безопасности, финансового учета и правовых обязательств.
-
-Для защиты информации применяются контроль доступа, шифрование при передаче и внутренний мониторинг. Мы регулярно усиливаем меры безопасности платформы.`,
-      accountDeletionTitle: 'Удаление аккаунта SEKOND',
-      accountDeletionBody: `Эта страница объясняет, как пользователи SEKOND могут удалить аккаунт и связанные данные.
-
-    Удаление аккаунта из мобильного приложения:
-    1) Откройте приложение SEKOND и перейдите в Профиль.
-    2) Откройте раздел Настройки.
-    3) Нажмите "Удалить аккаунт".
-    4) Ознакомьтесь с предупреждением и подтвердите удаление.
-    5) Для безопасности может потребоваться подтверждение личности (OTP/пароль).
-
-    Альтернативный способ:
-    1) Напишите на support@sekond.az с темой "Удаление аккаунта".
-    2) Укажите email или телефон, привязанный к аккаунту.
-
-    Какие данные удаляются:
-    - Профильные данные (имя, био, фото профиля, контакты)
-    - Контент объявлений и медиафайлы объявлений
-    - Личные части данных чата
-
-    Какие данные сохраняются и на какой срок:
-    - Финансовые/платежные записи (для аудита и бухгалтерского учета): 5 лет
-    - Логи безопасности и антифрода: 12 месяцев
-    - Данные, необходимые для правовых споров: в срок, требуемый законом
-
-    Обычно запросы на удаление аккаунта обрабатываются в течение 30 дней. Данные, которые нужно хранить по закону или для комплаенса, могут храниться в указанные выше сроки.`,
-      supportTitle: 'Поддержка',
-      supportBody: 'Для получения помощи заполните форму ниже или напишите нам напрямую на support@sekond.az. Укажите email аккаунта и кратко опишите проблему. Обычно отвечаем в течение 24 часов.',
-    },
+    legal: legal.ru,
   },
 };

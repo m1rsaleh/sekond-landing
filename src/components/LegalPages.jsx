@@ -41,6 +41,9 @@ function LegalPages({ t, page, onBackHome, language = 'az' }) {
   return (
     <section className="section legal-page">
       <div className="container legal-container">
+        <button type="button" className="legal-back" onClick={onBackHome}>
+          <span aria-hidden="true">←</span> {t.legal.backHome}
+        </button>
         <article className="legal-card">
           <h1>{current.title}</h1>
           {loading ? (
