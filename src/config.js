@@ -7,9 +7,10 @@ export const STORE_LINKS = {
   android: null,
 };
 
-// Avans = this percent of the listing price (backend: AppSettings.appFee, default 10).
-// If the admin changes it, update it here too.
-export const AVANS_PERCENT = 10;
+// Avans percent comes live from the admin panel ("Tətbiq Xidmət Haqqı", GET /api/settings/app-fee),
+// see services/appFee.service.js. This is only used until that loads or if the request fails
+// (matches the backend default).
+export const AVANS_PERCENT_FALLBACK = 10;
 
 // Seller has this many hours to accept or decline an avans (avans.controller.js).
 export const SELLER_REPLY_HOURS = 24;

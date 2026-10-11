@@ -5,6 +5,10 @@ export default defineConfig({
   plugins: [react()],
   server: {
     historyApiFallback: true,
+    // Dev only: same-origin /api like production (avans percent, etc.)
+    proxy: {
+      '/api': { target: 'https://sekond.az', changeOrigin: true },
+    },
   },
   preview: {
     cors: true,

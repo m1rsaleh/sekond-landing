@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useInView, useScroll, useSpring } from 'framer-motion';
 import filterScreen from '../assets/screens/filter.webp';
 import heelsScreen from '../assets/screens/product-heels.webp';
-import { AVANS_PERCENT } from '../config';
+import { splitPrice, useAppFee } from '../services/appFee.service';
 import { fmt } from '../i18n';
 import { HangTag, Icon, Phone, Reveal, SectionLabel, ease, money } from './ui';
 
@@ -13,12 +13,8 @@ const SCREENS = [filterScreen, heelsScreen, heelsScreen];
 const STICKY_SCREENS = [...new Set(SCREENS)];
 const ICONS = [Icon.Search, Icon.Wallet, Icon.Handshake];
 
-const EXAMPLE_AVANS = (EXAMPLE_PRICE * AVANS_PERCENT) / 100;
-const EXAMPLE_MEET = EXAMPLE_PRICE - EXAMPLE_AVANS;
-
-function Overlays({ active, t }) {
-  const avans = EXAMPLE_AVANS;
-  const meet = EXAMPLE_MEET;
+function Overlays({ active, t, split }) {
+  const { avans, meet } = split;
   return (
     <div className="how__overlays">
       <AnimatePresence>
@@ -61,23 +57,23 @@ function Overlays({ active, t }) {
 }
 
 // Mobile only: step 3 shows the price split instead of repeating the step 2 screenshot.
-function PriceSplit({ t }) {
+function PriceSplit({ t, split }) {
   return (
     <div className="how__split" aria-hidden="true">
       <HangTag tone="deep" string={26} className="swing">
         <small>{t.how.tagAvans}</small>
-        <strong>{money(EXAMPLE_AVANS)}</strong>
+        <strong>{money(split.avans)}</strong>
       </HangTag>
       <Icon.Plus size={18} className="how__split-plus" />
       <HangTag tone="mint" string={46} className="swing">
         <small>{t.how.tagMeet}</small>
-        <strong>{money(EXAMPLE_MEET)}</strong>
+        <strong>{money(split.meet)}</strong>
       </HangTag>
     </div>
   );
 }
 
-function Step({ index, step, isActive, onActive, t }) {
+function Step({ index, step, isActive, onActive, t, appFee, split }) {
   const ref = useRef(null);
   const inView = useInView(ref, { margin: '-45% 0px -45% 0px' });
   const StepIcon = ICONS[index];
@@ -94,9 +90,9 @@ function Step({ index, step, isActive, onActive, t }) {
       <Reveal className="how__step-body" amount={0.4}>
         <span className="how__num">0{index + 1}</span>
         <h3>{step.title}</h3>
-        <p>{fmt(step.desc, { p: AVANS_PERCENT })}</p>
+        <p>{fmt(step.desc, { p: appFee })}</p>
         <div className="how__step-media">
-          {index === 2 ? <PriceSplit t={t} /> : <Phone src={SCREENS[index]} alt={step.alt} className="phone--sm" />}
+          {index === 2 ? <PriceSplit t={t} split={split} /> : <Phone src={SCREENS[index]} alt={step.alt} className="phone--sm" />}
         </div>
       </Reveal>
     </div>
@@ -108,6 +104,8 @@ function HowItWorks({ t }) {
   const stepsRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: stepsRef, offset: ['start 60%', 'end 55%'] });
   const thread = useSpring(scrollYProgress, { stiffness: 120, damping: 28 });
+  const appFee = useAppFee();
+  const split = splitPrice(EXAMPLE_PRICE, appFee);
 
   return (
     <section className="section how" id="how">
@@ -123,7 +121,16 @@ function HowItWorks({ t }) {
               <motion.span className="how__thread-fill" style={{ scaleY: thread }} />
             </span>
             {t.how.steps.map((step, index) => (
-              <Step key={step.title} index={index} step={step} isActive={active === index} onActive={setActive} t={t} />
+              <Step
+                key={step.title}
+                index={index}
+                step={step}
+                isActive={active === index}
+                onActive={setActive}
+                t={t}
+                appFee={appFee}
+                split={split}
+              />
             ))}
           </div>
 
@@ -147,7 +154,7 @@ function HowItWorks({ t }) {
                   );
                 })}
               </Phone>
-              <Overlays active={active} t={t} />
+              <Overlays active={active} t={t} split={split} />
             </div>
           </div>
         </div>

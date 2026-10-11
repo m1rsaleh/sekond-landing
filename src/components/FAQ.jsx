@@ -1,13 +1,15 @@
 import { useId, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { AVANS_PERCENT, DISPUTE_DAYS, SELLER_REPLY_HOURS } from '../config';
+import { DISPUTE_DAYS, SELLER_REPLY_HOURS } from '../config';
+import { useAppFee } from '../services/appFee.service';
 import { fmt } from '../i18n';
 import { Icon, Reveal, SectionLabel, ease, fadeUp, stagger } from './ui';
 
 function FAQ({ t, onNavigate }) {
   const [openIndex, setOpenIndex] = useState(0);
   const baseId = useId();
-  const vars = { p: AVANS_PERCENT, h: SELLER_REPLY_HOURS, d: DISPUTE_DAYS };
+  const appFee = useAppFee();
+  const vars = { p: appFee, h: SELLER_REPLY_HOURS, d: DISPUTE_DAYS };
 
   return (
     <section className="section faq" id="faq">

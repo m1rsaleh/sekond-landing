@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion, useSpring, useTransform } from 'framer-motion';
-import { AVANS_PERCENT, DISPUTE_DAYS, SELLER_REPLY_HOURS } from '../config';
+import { DISPUTE_DAYS, SELLER_REPLY_HOURS } from '../config';
+import { splitPrice, useAppFee } from '../services/appFee.service';
 import { fmt } from '../i18n';
 import { HangTag, Icon, Reveal, SectionLabel, fadeUp, money, stagger } from './ui';
 
@@ -16,9 +17,9 @@ function AnimatedMoney({ value }) {
   return <motion.span>{text}</motion.span>;
 }
 
-function Calculator({ t }) {
+function Calculator({ t, appFee }) {
   const [price, setPrice] = useState(30);
-  const avans = (price * AVANS_PERCENT) / 100;
+  const { avans, meet } = splitPrice(price, appFee);
   const fill = ((price - MIN) / (MAX - MIN)) * 100;
 
   return (
@@ -44,7 +45,7 @@ function Calculator({ t }) {
       <div className="calc__split">
         <HangTag tone="mint" string={28} className="calc__tag">
           <small>
-            {t.avans.calcAvans} · {AVANS_PERCENT}%
+            {t.avans.calcAvans} · {appFee}%
           </small>
           <strong>
             <AnimatedMoney value={avans} />
@@ -56,7 +57,7 @@ function Calculator({ t }) {
         <HangTag tone="paper" string={44} className="calc__tag calc__tag--meet">
           <small>{t.avans.calcMeet}</small>
           <strong>
-            <AnimatedMoney value={price - avans} />
+            <AnimatedMoney value={meet} />
           </strong>
         </HangTag>
       </div>
@@ -80,7 +81,8 @@ const OUTCOME_ICONS = [Icon.Check, Icon.Undo, Icon.Flag];
 const TRUST_ICONS = [Icon.Shield, Icon.Chat, Icon.Headset];
 
 function Avans({ t }) {
-  const vars = { p: AVANS_PERCENT, h: SELLER_REPLY_HOURS, d: DISPUTE_DAYS };
+  const appFee = useAppFee();
+  const vars = { p: appFee, h: SELLER_REPLY_HOURS, d: DISPUTE_DAYS };
 
   return (
     <section className="section avans" id="avans">
@@ -107,7 +109,7 @@ function Avans({ t }) {
               {t.avans.desc}
             </Reveal>
           </div>
-          <Calculator t={t} />
+          <Calculator t={t} appFee={appFee} />
         </div>
 
         <motion.ol
