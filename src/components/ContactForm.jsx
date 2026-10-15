@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { track } from '../services/metaPixel';
 
 const API_BASE = typeof window !== 'undefined' && 
   (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname.includes('172'))
@@ -85,6 +86,7 @@ function ContactForm({ t, language = 'az' }) {
         }
       }
 
+      track('Contact');
       setSuccessMsg(language === 'az' ? 'Mesaj göndərildi! Tezliklə sizinlə əlaqə saxlanacağıq.' : language === 'en' ? 'Message sent! We will contact you soon.' : 'Сообщение отправлено! Мы свяжемся с вами в ближайшее время.');
       setFullName('');
       setEmail('');

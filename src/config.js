@@ -18,5 +18,8 @@ export const SELLER_REPLY_HOURS = 24;
 // Buyer can open a dispute this many days after the seller accepts (dispute.controller.js).
 export const DISPUTE_DAYS = 7;
 
+// Meta (Facebook) Pixel from Events Manager, see services/metaPixel.js. null turns tracking off.
+export const META_PIXEL_ID = '1727219888353027';
+
 export const SUPPORT_EMAIL = 'support@sekond.az';
 export const INSTAGRAM_URL = 'https://www.instagram.com/sekond_az/';
