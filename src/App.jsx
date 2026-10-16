@@ -15,6 +15,7 @@ import LegalPages from './components/LegalPages';
 import PaymentStatus from './components/PaymentStatus';
 import { translations } from './i18n';
 import { PAGE_PATHS, SITE_URL, pageMeta } from './seo';
+import { trackPageview } from './services/analytics';
 
 const PATH = window.location.pathname.toLowerCase();
 
@@ -75,6 +76,11 @@ function App() {
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
+
+  // One page view per page the visitor lands on or switches to
+  useEffect(() => {
+    trackPageview();
+  }, [page]);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);

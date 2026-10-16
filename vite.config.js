@@ -77,7 +77,8 @@ export default defineConfig({
     historyApiFallback: true,
     // Dev only: same-origin /api like production (avans percent, etc.)
     proxy: {
-      '/api': { target: 'https://sekond.az', changeOrigin: true },
+      // API_PROXY_TARGET=http://localhost:5001 to test against a local backend
+      '/api': { target: process.env.API_PROXY_TARGET || 'https://sekond.az', changeOrigin: true },
     },
   },
   preview: {

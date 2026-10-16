@@ -1,13 +1,10 @@
 import { META_PIXEL_ID } from '../config';
+import { storeClickFrom } from './storeClick';
 
-// Meta (Facebook) Pixel for ad tracking. Does nothing until META_PIXEL_ID is set in config.js.
+// Meta (Facebook) Pixel for ad tracking. Does nothing until META_PIXEL_ID is set in config.js,
+// and only runs in production builds.
 // PageView fires on load; the pixel also fires PageView by itself on pushState/popstate,
 // so the in-app page switches (terms, privacy, support) are counted without extra code.
-
-const STORE_HOSTS = {
-  'apps.apple.com': 'App Store',
-  'play.google.com': 'Google Play',
-};
 
 let ready = false;
 
@@ -17,35 +14,20 @@ export function track(event, params) {
   else window.fbq('track', event);
 }
 
-// Which part of the page the click came from, so ad results can be split by button.
-const placementOf = (el) => {
-  if (el.closest('footer')) return 'footer';
-  if (el.closest('header')) return 'navbar';
-  const section = el.closest('section[id]');
-  return section ? section.id : 'page';
-};
-
 // One listener for every store link on the page (navbar, hero, sell, download, footer).
 const onStoreClick = (e) => {
-  const link = e.target.closest?.('a[href]');
-  if (!link) return;
-  let host;
-  try {
-    host = new URL(link.href).hostname;
-  } catch {
-    return;
-  }
-  const store = STORE_HOSTS[host];
-  if (!store) return;
+  const click = storeClickFrom(e);
+  if (!click) return;
   track('Lead', {
-    content_name: store,
+    content_name: click.name,
     content_category: 'app_download',
-    placement: placementOf(link),
+    placement: click.placement,
   });
 };
 
 export function initMetaPixel() {
-  if (!META_PIXEL_ID || ready) return;
+  // Dev servers and local tests must not send events to the live ad account
+  if (!META_PIXEL_ID || ready || import.meta.env.DEV) return;
 
   /* eslint-disable */
   // Meta's standard base code (loads fbevents.js asynchronously).
