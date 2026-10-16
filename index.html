@@ -3,11 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>SEKOND · İkinci əl geyim al, sat</title>
-    <meta
-      name="description"
-      content="Bakıda ikinci əl geyim, ayaqqabı, çanta və aksesuar alıb-satmaq üçün tətbiq. Avansla al, qalanını görüşdə ödə."
-    />
+    <!-- Home <head>. vite.config.js copies this file for /privacy, /terms, /support etc. and swaps
+         the title, description, canonical and og tags (one tag per line, keep them that way). -->
+    <title>SEKOND · Bakıda ikinci əl geyim al, sat</title>
+    <meta name="description" content="Bakıda ikinci əl geyim, ayaqqabı, çanta və aksesuar alıb-satmaq üçün tətbiq. Elan yerləşdirmək pulsuzdur. Avansla al, qalanını görüşdə ödə." />
+    <link rel="canonical" href="https://sekond.az/" />
     <meta name="theme-color" content="#0E9F6E" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -15,14 +15,54 @@
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="SEKOND" />
+    <meta property="og:locale" content="az_AZ" />
     <meta property="og:url" content="https://sekond.az/" />
     <meta property="og:title" content="SEKOND · Geyimini sat, yenisini tap." />
-    <meta
-      property="og:description"
-      content="Bakıda ikinci əl geyim, ayaqqabı və çanta. Avansla al, qalanını görüşdə ödə."
-    />
-    <meta property="og:image" content="https://sekond.az/apple-touch-icon.png" />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:description" content="Bakıda ikinci əl geyim, ayaqqabı və çanta. Avansla al, qalanını görüşdə ödə." />
+    <meta property="og:image" content="https://sekond.az/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="SEKOND: Geyimini sat, yenisini tap." />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://sekond.az/#organization",
+            "name": "SEKOND",
+            "url": "https://sekond.az/",
+            "logo": "https://sekond.az/apple-touch-icon.png",
+            "email": "support@sekond.az",
+            "sameAs": [
+              "https://www.instagram.com/sekond_az/",
+              "https://apps.apple.com/az/app/sekond/id6760208632"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://sekond.az/#website",
+            "name": "SEKOND",
+            "alternateName": "Sekond",
+            "url": "https://sekond.az/",
+            "inLanguage": "az",
+            "publisher": { "@id": "https://sekond.az/#organization" }
+          },
+          {
+            "@type": "MobileApplication",
+            "name": "SEKOND",
+            "description": "Bakıda ikinci əl geyim, ayaqqabı, çanta və aksesuar alıb-satmaq üçün tətbiq.",
+            "operatingSystem": "iOS",
+            "applicationCategory": "ShoppingApplication",
+            "installUrl": "https://apps.apple.com/az/app/sekond/id6760208632",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "AZN" },
+            "publisher": { "@id": "https://sekond.az/#organization" }
+          }
+        ]
+      }
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

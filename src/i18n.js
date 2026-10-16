@@ -13,7 +13,28 @@ export const fmt = (str, vars = {}) =>
 export const translations = {
   az: {
     meta: {
-      title: 'SEKOND · İkinci əl geyim al, sat',
+      // Home title and description are also written in index.html (the static home <head>).
+      title: 'SEKOND · Bakıda ikinci əl geyim al, sat',
+      description:
+        'Bakıda ikinci əl geyim, ayaqqabı, çanta və aksesuar alıb-satmaq üçün tətbiq. Elan yerləşdirmək pulsuzdur. Avansla al, qalanını görüşdə ödə.',
+      pages: {
+        privacy: {
+          title: 'Məxfilik siyasəti · SEKOND',
+          description: 'SEKOND hansı məlumatları toplayır, nə üçün işlədir və necə qoruyur.',
+        },
+        terms: {
+          title: 'İstifadə qaydaları · SEKOND',
+          description: 'SEKOND-da elan, avans və görüş qaydaları.',
+        },
+        support: {
+          title: 'Dəstək · SEKOND',
+          description: 'SEKOND ilə bağlı sualın var? Formu doldur və ya support@sekond.az ünvanına yaz.',
+        },
+        'account-deletion': {
+          title: 'Hesabın silinməsi · SEKOND',
+          description: 'SEKOND hesabını tətbiqdən və ya e-poçtla necə silmək olar. Hansı məlumatlar silinir, hansılar saxlanılır.',
+        },
+      },
     },
     nav: {
       ariaHome: 'SEKOND ana səhifə',
@@ -34,7 +55,8 @@ export const translations = {
       androidGet: 'Yüklə',
     },
     hero: {
-      tag: 'Bakı · ikinci əl moda',
+      // Page H1 (search keyword) shown as the small label; the slogan below is the visual headline.
+      tag: 'Bakıda ikinci əl geyim al, sat',
       title1: 'Geyimini sat,',
       title2: 'yenisini tap.',
       sub: 'Geyim, ayaqqabı, çanta və aksesuar. Bakıda, bir tətbiqdə. Avansla al, qalanını görüşdə ödə.',
@@ -156,7 +178,27 @@ export const translations = {
 
   en: {
     meta: {
-      title: 'SEKOND · Buy and sell second-hand fashion',
+      title: 'SEKOND · Buy and sell second-hand clothes in Baku',
+      description:
+        'An app to buy and sell second-hand clothes, shoes, bags and accessories in Baku. Listing is free. Pay a small deposit, the rest when you meet.',
+      pages: {
+        privacy: {
+          title: 'Privacy Policy · SEKOND',
+          description: 'What data SEKOND collects, why it is used and how it is protected.',
+        },
+        terms: {
+          title: 'Terms of Use · SEKOND',
+          description: 'Rules for listings, deposits and meetups on SEKOND.',
+        },
+        support: {
+          title: 'Support · SEKOND',
+          description: 'Have a question about SEKOND? Fill in the form or email support@sekond.az.',
+        },
+        'account-deletion': {
+          title: 'Account deletion · SEKOND',
+          description: 'How to delete your SEKOND account in the app or by email. What is deleted and what is kept.',
+        },
+      },
     },
     nav: {
       ariaHome: 'SEKOND home page',
@@ -177,7 +219,7 @@ export const translations = {
       androidGet: 'Get it on',
     },
     hero: {
-      tag: 'Baku · second-hand fashion',
+      tag: 'Second-hand clothes in Baku',
       title1: 'Sell your clothes,',
       title2: 'find new ones.',
       sub: 'Clothes, shoes, bags and accessories. In Baku, in one app. Pay a small deposit, the rest when you meet.',
@@ -299,7 +341,27 @@ export const translations = {
 
   ru: {
     meta: {
-      title: 'SEKOND · Покупай и продавай одежду б/у',
+      title: 'SEKOND · Покупай и продавай одежду б/у в Баку',
+      description:
+        'Приложение для покупки и продажи одежды, обуви, сумок и аксессуаров б/у в Баку. Объявления бесплатно. Небольшой аванс сейчас, остальное при встрече.',
+      pages: {
+        privacy: {
+          title: 'Политика конфиденциальности · SEKOND',
+          description: 'Какие данные собирает SEKOND, зачем использует и как защищает.',
+        },
+        terms: {
+          title: 'Условия использования · SEKOND',
+          description: 'Правила объявлений, аванса и встреч в SEKOND.',
+        },
+        support: {
+          title: 'Поддержка · SEKOND',
+          description: 'Есть вопрос о SEKOND? Заполни форму или напиши на support@sekond.az.',
+        },
+        'account-deletion': {
+          title: 'Удаление аккаунта · SEKOND',
+          description: 'Как удалить аккаунт SEKOND в приложении или по почте. Что удаляется и что сохраняется.',
+        },
+      },
     },
     nav: {
       ariaHome: 'Главная страница SEKOND',
@@ -320,7 +382,7 @@ export const translations = {
       androidGet: 'Доступно в',
     },
     hero: {
-      tag: 'Баку · одежда б/у',
+      tag: 'Одежда б/у в Баку',
       title1: 'Продай одежду,',
       title2: 'найди новую.',
       sub: 'Одежда, обувь, сумки и аксессуары. В Баку, в одном приложении. Небольшой аванс сейчас, остальное при встрече.',

@@ -65,10 +65,11 @@ function Hero({ t }) {
       <div className="container hero__grid">
         <motion.div className="hero__copy" style={{ y: copyY, opacity: copyOpacity }}>
           <motion.div {...pop(0.05)}>
-            <SectionLabel>{t.hero.tag}</SectionLabel>
+            <SectionLabel as="h1">{t.hero.tag}</SectionLabel>
           </motion.div>
 
-          <h1 className="hero__title">
+          {/* The slogan is the visual headline; the H1 above carries the search keyword. */}
+          <p className="hero__title">
             <span className="line">
               <motion.span {...lineIn(0.15)}>{t.hero.title1}</motion.span>
             </span>
@@ -84,7 +85,7 @@ function Hero({ t }) {
                 </svg>
               </motion.span>
             </span>
-          </h1>
+          </p>
 
           <motion.p className="hero__sub" {...pop(0.5)}>
             {t.hero.sub}

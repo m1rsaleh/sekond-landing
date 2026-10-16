@@ -288,12 +288,12 @@ export function Reveal({ children, className = '', as = 'div', delay = 0, amount
   );
 }
 
-export function SectionLabel({ children, tone }) {
+export function SectionLabel({ children, tone, as: Tag = 'span' }) {
   return (
-    <span className={`section-label ${tone ? `section-label--${tone}` : ''}`}>
+    <Tag className={`section-label ${tone ? `section-label--${tone}` : ''}`}>
       <span className="section-label__hole" aria-hidden="true" />
       {children}
-    </span>
+    </Tag>
   );
 }
 

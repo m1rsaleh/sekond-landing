@@ -21,7 +21,7 @@ function Footer({ t, onNavigate, isHome }) {
           </div>
 
           <nav className="footer__col" aria-label={t.footer.colProduct}>
-            <h4>{t.footer.colProduct}</h4>
+            <h2>{t.footer.colProduct}</h2>
             <a href={sectionHref('how')}>{t.nav.links.how}</a>
             <a href={sectionHref('avans')}>{t.nav.links.avans}</a>
             <a href={sectionHref('sell')}>{t.nav.links.sell}</a>
@@ -31,7 +31,7 @@ function Footer({ t, onNavigate, isHome }) {
           </nav>
 
           <nav className="footer__col" aria-label={t.footer.linksAria}>
-            <h4>{t.footer.colLegal}</h4>
+            <h2>{t.footer.colLegal}</h2>
             {legalLinks.map((link) => (
               <a
                 key={link.page}
@@ -47,7 +47,7 @@ function Footer({ t, onNavigate, isHome }) {
           </nav>
 
           <div className="footer__col">
-            <h4>{t.footer.colContact}</h4>
+            <h2>{t.footer.colContact}</h2>
             <a href={`mailto:${SUPPORT_EMAIL}`} className="footer__icon-link">
               <Icon.Mail size={18} />
               {SUPPORT_EMAIL}

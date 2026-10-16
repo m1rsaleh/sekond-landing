@@ -14,6 +14,7 @@ import Footer from './components/Footer';
 import LegalPages from './components/LegalPages';
 import PaymentStatus from './components/PaymentStatus';
 import { translations } from './i18n';
+import { PAGE_PATHS, SITE_URL, pageMeta } from './seo';
 
 const PATH = window.location.pathname.toLowerCase();
 
@@ -82,9 +83,17 @@ function App() {
 
   useEffect(() => {
     document.documentElement.lang = language;
-    document.title = t.meta.title;
     writePref('sekond-lang', language);
-  }, [language, t]);
+  }, [language]);
+
+  // Title, description and canonical follow the page. Payment pages keep their static noindex head.
+  useEffect(() => {
+    if (PATH.startsWith('/payment-')) return;
+    const meta = pageMeta(t, page);
+    document.title = meta.title;
+    document.querySelector('meta[name="description"]')?.setAttribute('content', meta.description);
+    document.querySelector('link[rel="canonical"]')?.setAttribute('href', SITE_URL + PAGE_PATHS[page]);
+  }, [page, t]);
 
   // Links like /#avans from legal pages: scroll once the home sections exist.
   useEffect(() => {
