@@ -5,8 +5,9 @@ import react from '@vitejs/plugin-react';
 import { translations } from './src/i18n.js';
 import { PAGE_PATHS, SITE_URL } from './src/seo.js';
 
-// Paths served as real files (dist/<path>/index.html), each a copy of index.html with its own
+// Paths served as real files (dist/<path>.html), each a copy of index.html with its own
 // title, description and canonical so crawlers and link previews see them without JS.
+// Flat files, not <path>/index.html: nginx would 301 /privacy to /privacy/ for a directory.
 // Any other path gets dist/404.html (see the nginx config). Add new routes here.
 const STATIC_PAGES = [
   { path: '/privacy', page: 'privacy' },
@@ -59,7 +60,7 @@ function staticPages() {
         fs.writeFileSync(file, withHead(html, head));
       };
       for (const { path: urlPath, page, robots } of STATIC_PAGES) {
-        write(path.join(dir, urlPath, 'index.html'), {
+        write(path.join(dir, `${urlPath}.html`), {
           ...(page && translations.az.meta.pages[page]),
           canonical: page && SITE_URL + PAGE_PATHS[page],
           robots,
