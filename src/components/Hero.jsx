@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { motion, useMotionValue, useScroll, useSpring, useTransform } from 'framer-motion';
 import homeScreen from '../assets/screens/home.webp';
 import trenchScreen from '../assets/screens/product-trench.webp';
+import { LAUNCH_GIFT_ENDS_AT } from '../config';
 import { Hanger, HangTag, Icon, Phone, SectionLabel, StoreButtons, ease } from './ui';
 
 const lineIn = (delay) => ({
@@ -90,6 +91,12 @@ function Hero({ t }) {
           <motion.p className="hero__sub" {...pop(0.5)}>
             {t.hero.sub}
           </motion.p>
+
+          {Date.now() <= new Date(LAUNCH_GIFT_ENDS_AT).getTime() && (
+            <motion.p className="hero__gift" {...pop(0.56)}>
+              {t.hero.gift}
+            </motion.p>
+          )}
 
           <motion.div {...pop(0.62)}>
             <StoreButtons t={t} />

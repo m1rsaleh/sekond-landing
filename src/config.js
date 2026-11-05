@@ -21,5 +21,9 @@ export const DISPUTE_DAYS = 7;
 // Meta (Facebook) Pixel from Events Manager, see services/metaPixel.js. null turns tracking off.
 export const META_PIXEL_ID = '1727219888353027';
 
+// Launch gift end date, same as LAUNCH_GIFT_ENDS_AT in the backend (launchGift.service.js).
+// The hero line hides itself after this moment.
+export const LAUNCH_GIFT_ENDS_AT = '2026-11-30T23:59:59+04:00';
+
 export const SUPPORT_EMAIL = 'support@sekond.az';
 export const INSTAGRAM_URL = 'https://www.instagram.com/sekond_az/';

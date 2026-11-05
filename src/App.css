@@ -1005,6 +1005,20 @@ section[id] {
   font-weight: 500;
 }
 
+/* Launch gift line, sits right above the store buttons */
+.hero__gift {
+  display: table;
+  margin: -12px 0 16px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: var(--avans-bg);
+  color: var(--mint);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(0.92rem, 1.3vw, 1.05rem);
+  line-height: 1.25;
+}
+
 .hero__facts {
   list-style: none;
   padding: 0;
