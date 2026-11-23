@@ -73,6 +73,7 @@ function Footer({ t, onNavigate, isHome }) {
         <div className="footer__bottom">
           <p>
             {t.footer.rights}
+            <span className="footer__tax-id">{t.footer.owner}</span>
             <span className="footer__tax-id">{t.footer.taxId}</span>
           </p>
           <button type="button" className="footer__top-btn" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
