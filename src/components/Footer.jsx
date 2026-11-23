@@ -71,7 +71,10 @@ function Footer({ t, onNavigate, isHome }) {
         </motion.p>
 
         <div className="footer__bottom">
-          <p>{t.footer.rights}</p>
+          <p>
+            {t.footer.rights}
+            <span className="footer__tax-id">{t.footer.taxId}</span>
+          </p>
           <button type="button" className="footer__top-btn" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
             {t.footer.backTop}
             <Icon.ArrowUp size={16} />

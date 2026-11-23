@@ -2344,6 +2344,18 @@ section[id] {
   margin: 0;
 }
 
+.footer__tax-id {
+  margin-left: 12px;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .footer__tax-id {
+    display: block;
+    margin: 4px 0 0;
+  }
+}
+
 .footer__top-btn {
   display: inline-flex;
   align-items: center;
